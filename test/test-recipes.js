@@ -19,13 +19,13 @@ describe('Recipes', function() {
   // GET INTEGRATION TEST
   it('Should list recipes on GET', function() {
     return chai.request(app)
-      .get('./recipes')
+      .get('/recipes')
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a('array');
         res.body.length.should.be.at.least(1);
-        res.body.array.forEach(function(item) {
+        res.body.forEach(function(item) {
           item.should.be.a('object');
           item.should.include.keys('id', 'name', 'ingredients');
         });
@@ -64,7 +64,7 @@ describe('Recipes', function() {
           .send(updateData);
       })
       .then(function(res) {
-        res.should.have.status(204);
+        res.should.have.status(200);
       });
   });
 
